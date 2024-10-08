@@ -96,6 +96,18 @@ h1 {
     letter-spacing: 2px;
 }
 
+.container{
+    height: 100vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     #doremon {
