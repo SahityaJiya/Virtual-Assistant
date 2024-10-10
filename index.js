@@ -4,19 +4,15 @@ let content = document.querySelector("#content");
 function speak(text) {
   let text_speak = new SpeechSynthesisUtterance(text);
 
-  // Set speech properties
-  text_speak.rate = 1; // Speed of speech
-  text_speak.pitch = 1.5; // Pitch to make the voice sound higher
-  text_speak.volume = 1; // Volume of speech
-  text_speak.lang = "hi-GB"; // Language set to Hindi (UK)
+  text_speak.rate = 1; 
+  text_speak.pitch = 1.5; 
+  text_speak.volume = 1; 
+  text_speak.lang = "hi-GB"; 
 
-  
   let voices = window.speechSynthesis.getVoices();
   let femaleVoice = voices.find(
     (voice) =>
-      voice.name.includes("female") ||
-      voice.name.includes("Female") ||
-      voice.name.includes("Zira")
+      voice.name.toLowerCase().includes("female") || voice.name.includes("Zira")
   );
 
   if (femaleVoice) {
@@ -25,11 +21,14 @@ function speak(text) {
 
   window.speechSynthesis.speak(text_speak);
 }
+
 //-------------------------------------------------------------
-function websites(data){
-  if (data.split(" ")[0] = "open")
-   window.open(`https://www.${data.split(" ")[1]}.com/`, "_blank");
+function websites(data) {
+  if (data.split(" ")[0] === "open") {
+    window.open(`https://www.${data.split(" ")[1]}.com/`, "_blank");
+  }
 }
+
 //-------------------------------------------------------------
 function wishMe() {
   let day = new Date();
@@ -70,7 +69,7 @@ function takeCommand(message) {
   } else if (message.includes("how are you")) {
     speak("I'm doing great, thank you! How can I assist you?");
   } else if (message.includes("what is your name")) {
-    speak("My name is chimtim, your virtual assistant, made by sahitya jiya!");
+    speak("My name is Chimtim, your virtual assistant, made by Sahitya Jiya!");
   } else if (message.includes("time")) {
     let now = new Date();
     let time = now.toLocaleTimeString();
@@ -81,39 +80,10 @@ function takeCommand(message) {
     speak(`Today's date is ${date}`);
   } else if (message.includes("thank you")) {
     speak("You're welcome! I'm happy to help.");
-  } else if(message.split(" ")[0] = "open"){
-  
-       window.open(`https://www.${message.split(" ")[1]}.com/`, "_blank");
-   
-  }
-  
-  
-  
-  
-  
-  else if (message.includes("open youtube")) {
-    speak("opening youtube");
-     window.open("https://www.youtube.com","_blank");
-   
-  } else if (message.includes("open google")) {
-    speak("opening google");
-     window.open("https://www.google.com","_blank");
-   
-  } else if (message.includes("open chrome")) {
-    speak("opening chrome");
-     window.open("https://www.chrome.com","_blank");
-   
-  } else if (message.includes("open facebook")) {
-    speak("opening facebook");
-     window.open("https://www.facebook.com","_blank");
-   
-  }
-  else if (message.includes("open chatgpt")) {
-    speak("opening chatgpt");
-     window.open("https://www.chatgpt.com","_blank");
-   
-  }
-  else {
-    speak("Sorry, I didn't understand that. Can you please repeat?");
+  } else if (message.split(" ")[0] === "open") {
+    websites(message);
+  } else {
+    speak(`This is what I found on the internet regarding ${message}...`);
+    window.open(`https://www.google.co.in/search?q=${message}/`, "_blank");
   }
 }
