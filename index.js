@@ -10,7 +10,7 @@ function speak(text) {
   text_speak.volume = 1; // Volume of speech
   text_speak.lang = "hi-GB"; // Language set to Hindi (UK)
 
-  // Select a female voice if available
+  
   let voices = window.speechSynthesis.getVoices();
   let femaleVoice = voices.find(
     (voice) =>
@@ -25,7 +25,12 @@ function speak(text) {
 
   window.speechSynthesis.speak(text_speak);
 }
-
+//-------------------------------------------------------------
+function websites(data){
+  if (data.split(" ")[0] = "open")
+   window.open(`https://www.${data.split(" ")[1]}.com/`, "_blank");
+}
+//-------------------------------------------------------------
 function wishMe() {
   let day = new Date();
   let hours = day.getHours();
@@ -76,7 +81,17 @@ function takeCommand(message) {
     speak(`Today's date is ${date}`);
   } else if (message.includes("thank you")) {
     speak("You're welcome! I'm happy to help.");
-  } else if (message.includes("open youtube")) {
+  } else if(message.split(" ")[0] = "open"){
+  
+       window.open(`https://www.${message.split(" ")[1]}.com/`, "_blank");
+   
+  }
+  
+  
+  
+  
+  
+  else if (message.includes("open youtube")) {
     speak("opening youtube");
      window.open("https://www.youtube.com","_blank");
    
